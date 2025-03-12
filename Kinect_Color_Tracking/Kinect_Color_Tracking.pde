@@ -6,6 +6,10 @@
 // Adapted March 12, 2025 by Calico Rose.
 // Use color tracking with the Kinect V2.
 
+import java.awt.AWTException;
+import java.awt.Robot;
+Robot robby;
+
 import KinectPV2.*;
 KinectPV2 kinect;
 PImage color_img;
@@ -14,7 +18,8 @@ color trackColor;
 float threshold = 25;
 
 void setup() {
-  size(1000, 800);
+  size(360, 460);
+  //noCursor();
 
   // Tracking white as default.
   trackColor = color(255, 255, 255);
@@ -22,6 +27,14 @@ void setup() {
   kinect = new KinectPV2(this);
   kinect.enableColorImg(true);
   kinect.init();
+  
+  try {
+    robby = new Robot();
+  }
+  catch(AWTException e) {
+    println("Robot class not supported.");
+    exit();
+  }
 }
 
 void draw() {
@@ -72,6 +85,12 @@ void draw() {
     strokeWeight(4.0);
     stroke(0);
     ellipse(avgX, avgY, 24, 24);
+    float pointerX = map(avgX, 902, 1761, width-width, width);
+    float pointerY = map(avgY, 363, 915, height-height, height);
+    robby.mouseMove((int)pointerX, (int)pointerY);
+    //println("X: ", (int)avgX + 300);
+    //println("Y: ", (int)avgY + 75);
+    delay(500);
   }
 }
 
