@@ -87,7 +87,9 @@ void draw() {
     ellipse(avgX, avgY, 24, 24);
     //float pointerX = map(avgX, 902, 1761, width-width, width);
     //float pointerY = map(avgY, 363, 915, height-height, height);
-    //robby.mouseMove((int)avgX, (int)avgY);
+    if(mousePressed) {
+      robby.mouseMove((int)avgX, (int)avgY); 
+    }
     //println("X: ", (int)avgX + 300);
     //println("Y: ", (int)avgY + 75);
     //delay(500);
