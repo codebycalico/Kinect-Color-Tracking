@@ -18,7 +18,8 @@ color trackColor;
 float threshold = 25;
 
 void setup() {
-  size(1000, 800);
+  // sized to match the "game" image in Unity
+  size(325, 410);
   //noCursor();
 
   // Tracking white as default.
@@ -85,13 +86,13 @@ void draw() {
     strokeWeight(4.0);     
     stroke(0);
     ellipse(avgX, avgY, 24, 24);
-    //float pointerX = map(avgX, 902, 1761, width-width, width);
-    //float pointerY = map(avgY, 363, 915, height-height, height);
+    float pointerX = map(avgX, 339, 632, 150, width);
+    float pointerY = map(avgY, 632, 1428, 450, 950);
     if(mousePressed) {
-      robby.mouseMove((int)avgX, (int)avgY); 
+      robby.mouseMove((int)pointerY, (int)pointerX); 
     }
-    //println("X: ", (int)avgX + 300);
-    //println("Y: ", (int)avgY + 75);
+    //println("X: ", avgX);
+    //println("Y: ", avgY);
     //delay(500);
   }
 }
@@ -101,8 +102,8 @@ float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   return d;
 }
 
-void mousePressed() {
-  // Save color where the mouse is clicked in trackColor variable
-  int loc = mouseX + mouseY*color_img.width;
-  trackColor = color_img.pixels[loc];
-}
+//void mousePressed() {
+//  // Save color where the mouse is clicked in trackColor variable
+//  int loc = mouseX + mouseY*color_img.width;
+//  trackColor = color_img.pixels[loc];
+//}
